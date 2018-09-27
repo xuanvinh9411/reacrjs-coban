@@ -1,0 +1,117 @@
+<div class="panel panel-warning">
+	<div class="panel-heading">
+		<h3 class="panel-title">Thêm Công việc </h3>
+		<span class="fa fa-times-circle text-right"></span>
+	</div>
+	<div class="panel-body">
+		<form>
+			<div class="form-group">
+				<label>Tên :</label>
+				<input type="text" name="name" class="form-control">
+			</div>
+			<label>Trạng Thái:</label>
+			<select class="form-group" name="status">
+				<option value={true}>Kích Hoạt</option>
+				<option value="{false}">Ẩn</option>
+			</select>
+			<div class="text-center">
+				<button type="submit" class="btn btn-warning"><span class="fa fa-plus mr-5"></span> Lưu Lại</button> 
+				<button type="submit" class="btn btn-danger"><span class="fa fa-close mr-5"></span>Hủy Bỏ</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		<div class="input-group">
+			<input type="text" name="keyword" class="form-control" placeholder="Nhập từ khóa ....">
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-primary"><span class="fa fa-search"></span>Tìm </button>
+			</span>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		<div class="dropdown">
+			<button class="btn btn-primary dropdown-toggle"
+			type="button"
+			id="dropdownMenu1"
+			data-toggle="dropdown"
+			aria-haspopup="true"
+			aria-expanded="true"
+			>
+				Sấp Xếp<span class="fa fa-caret-square-o-down"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="" role="button" class="sort_selected">
+						<span class="fa da-sort-alpha-asc ">
+							Tên A-Z
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="" role="button">
+						<span class="fa fa-sort-alpha-desc">
+							Tên Z-A
+						</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>STT</th>
+					<th>Tên</th>
+					<th>Trạng Thái</th>
+					<th>Hành Động</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td>
+						<input type="text" name="form-control" name="fileName">
+					</td>
+					<td>
+						<select class="form-control" name="filterStatus"></select>
+						<option value="{-1}">Tất Cả</option>
+						<option value="{0}">Ẩn</option>
+						<option value="{-1}">Kích Hoạt</option>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						1
+					</td>
+					<td>
+						Học Angular
+					</td>
+					<td class="text-center">
+						<span class="label label-danger">Kích Hoạt</span>
+					</td>
+					<td class="text-center">
+						<button type="button" class="btn btn-warning">
+							<span class="fa fa-pencil">
+							</span>
+							Sửa
+						</button>
+						&nbsp;
+						<button type="button" class="btn btn-danger">
+							<span class="fa fa-trash">
+							</span>
+							Xóa
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
