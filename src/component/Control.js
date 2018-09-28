@@ -5,12 +5,12 @@ import Sort from './Control/Sort';
 class Control extends Component {
   render() {
     return (
-      <div className="row">
-        <Search />
+      <div className ="row" >
+        <Search onSearch ={this.props.onSearch} />
         <Sort />
       </div>
     );
-  }
+	}
 }
 
 export default Control;

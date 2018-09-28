@@ -9,7 +9,12 @@ class App extends Component {
     this.state = {
       tasks : [],
       IsDisplayFrom : false,
-      TaskEditing : null
+      TaskEditing : null,
+      filter : {
+        name : '',
+        status : -1,
+        keyword : ''
+      }
     }
   }
 
@@ -33,9 +38,17 @@ class App extends Component {
     return this.s4() + this.s4() + '_' + this.s4() + '_' + this.s4() + '_' + this.s4() + '_' + this.s4() + '_' + this.s4() + '_' + this.s4()
   }
   onToggleForm = () =>{
-    this.setState({
-       IsDisplayFrom : !this.state.IsDisplayFrom
-    });
+    if(this.state.IsDisplayFrom && this.state.TaskEditing !== null){
+      this.setState({
+         IsDisplayFrom : true,
+         TaskEditing : null
+      });
+    }else{
+         this.setState({
+         IsDisplayFrom : !this.state.IsDisplayFrom,
+         TaskEditing : null
+      });
+    }
   }
 
   // ---Close Form đăng ký
@@ -120,8 +133,47 @@ class App extends Component {
     return result;
   }
 
+// ---filter
+onFilter = (filterName,filterStatus,value) =>{
+  console.log(value);
+   filterStatus = parseInt(filterStatus, 10);
+   this.setState ({
+    filter :{
+      name : filterName.toLowerCase(),
+      status : filterStatus
+    }
+   });
+}
+onSearch = (keyword) =>
+{
+  this.setState({
+    keyword : keyword
+  });
+}
+
   render() {
-    var {tasks , IsDisplayFrom , TaskEditing} = this.state // var tasks = this.state.tasks
+    var {tasks , IsDisplayFrom , TaskEditing , filter , keyword} = this.state; 
+    console.log(filter);
+    if(filter){
+      if(filter.name){
+        tasks = tasks.filter((tasks) =>{
+          return tasks.name.toLowerCase().indexOf(filter.name) !== -1;
+        });
+      }
+        tasks = tasks.filter((tasks) =>{
+          if(filter.status === -1)
+          {
+            return tasks;
+          }else{
+            return tasks.status === ( filter.status === 1 ? true : false);
+          }
+        });
+    }
+    if (keyword) {
+      tasks = tasks.filter((tasks) =>{
+          return tasks.name.toLowerCase().indexOf(keyword) !== -1;
+        });
+    }
     var elmTaskForm = IsDisplayFrom === true ? <TaskFrom onSubmit={this.onSubmit}
                                                          onCloseForm = {this.onCloseForm}
                                                          task = { TaskEditing }
@@ -141,12 +193,15 @@ class App extends Component {
             >
               <span className="fa fa-plus">  </span>
             </button>
-            <Control/>
+            <Control
+            onSearch = {this.onSearch}
+            />
             <TaskList 
             tasks = {tasks}
             onUpdateStatus = {this.onUpdateStatus }
             onDelete = {this.onDelete }
             onUpdate = {this.onUpdate }
+            onFilter = {this.onFilter}
             />
           </div>
         </div>

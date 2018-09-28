@@ -18,6 +18,23 @@ class TaskFrom extends Component {
       });
     }
   }
+
+  componentWillReceiveProps(nextProps){
+     if(nextProps && nextProps.task){
+      this.setState({
+        id :nextProps.task.id,
+        name :nextProps.task.name,
+        status :nextProps.task.status
+      });
+    }else if(!nextProps.task){
+       this.setState({
+      id : '',
+      name : '',
+      status : false
+    });
+    }
+  }
+
   onCloseForm=()=>{
         this.props.onCloseForm();
       }
